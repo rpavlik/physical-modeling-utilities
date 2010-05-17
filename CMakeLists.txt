@@ -32,6 +32,8 @@ endif()
 
 find_package(Boost 1.32 REQUIRED)
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}" ${Boost_INCLUDE_DIRS})
+set(PHYSICALMODELING_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}" ${Boost_INCLUDE_DIRS} PARENT_SCOPE)
+
 if(NOT PM_IS_SUBPROJECT)
 	include(DoxygenTargets)
 	add_doxygen(Doxyfile)
