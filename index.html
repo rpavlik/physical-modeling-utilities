@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<title>rpavlik/physical-modeling-utilities @ GitHub</title>
-	
+
 	<style type="text/css">
 		body {
   		margin-top: 1.0em;
@@ -30,7 +30,7 @@
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
 	</style>
-	
+
 </head>
 
 <body>
@@ -52,9 +52,24 @@
       C++ code to support applications that perform physical modeling tasks.
     </div>
 
+    <h2>Using It</h2>
+    <p>If your project is based on <a href="http://www.cmake.org">CMake</a> (as it should be),
+    it's very simple.  Just toss the entire source directory into a subdirectory
+    in your project (for example, <tt>third-party/physical-modeling-utilities/</tt>),
+    then do the following in your <tt>CMakeLists.txt</tt> file:</p>
+    <p><tt>add_subdirectory(third-party/physical-modeling-utilities)</tt><br />
+    <tt>include_directories(third-arpty/physical-modeling-utilities)</tt></p>
+
+    <h2>Developer Documentation</h2>
+    <p>You might enjoy looking at a relatively-recent snapshot of <a href="doxygen-html/">the Doxygen documentation</a>
+    hosted here.  For the latest version, grab the source, generate a build tree with CMake, and
+    build the "doc" target.  (<tt>make doc</tt> for the *nix-friendly among you.)</p>
+
     <h2>Dependencies</h2>
-<p>Boost (version 1.32 or newer) - MPL
-CMake, Doxygen, Graphviz, and latex for installers and documentation generation.</p>
+    <ul>
+<li>Boost (version 1.32 or newer) - MPL</li>
+<li>For installers and documentation generation: CMake</li>
+<li>For documentation generation:  Doxygen, Graphviz, latex, ghostscript.</li>
 <h2>License</h2>
 <p>Copyright Iowa State University 2010
 Distributed under the Boost Software License, Version 1.0.
@@ -82,6 +97,6 @@ Distributed under the Boost Software License, Version 1.0.
 
   </div>
 
-  
+
 </body>
 </html>
