@@ -25,11 +25,14 @@
 // - none
 
 // Library/third-party includes
+#include <boost/static_assert.hpp>
+
 /// @name Boost MPL headers
 /// @{
 #include <boost/mpl/vector_c.hpp>
 #include <boost/mpl/plus.hpp>
 #include <boost/mpl/minus.hpp>
+#include <boost/mpl/equal.hpp>
 #include <boost/mpl/transform.hpp>
 #include <boost/mpl/placeholders.hpp>
 /// @}
@@ -50,10 +53,12 @@ namespace PhysicalModeling {
 
 	// Standard, lengthy way of creating a variable to store a length
 	PhysicalModeling::DimensionedQuantities::Quantity<PhysicalModeling::DimensionedQuantities::dims::length> myvar;
+	PhysicalModeling::DimensionedQuantities::SI::Meters mymeters;
 
 	// Namespace aliasing, for tidier code: recommended practice
 	namespace dq = PhysicalModeling::DimensionedQuantities;
 	dq::Quantity<dq::dims::length> myvar2; // notice how much tidier this is
+	dq::SI::Meters mymeters2;
 	@endcode
 
 	There is one additional way to access these facilities even easier,
@@ -63,7 +68,8 @@ namespace PhysicalModeling {
 	// The shortest alternative: import the things you want.
 	// NEVER DO THIS IN A HEADER FILE!
 	using PhysicalModeling::DimensionedQuantities::Quantity;
-	using PhysicalModeling::DimensionedQuantities::dims;
+	using namespace PhysicalModeling::DimensionedQuantities::SI;
+	namespace dims = PhysicalModeling::DimensionedQuantities::dims;
 
 	Quantity<dims::length> myvar3; // a little neater
 	@endcode
@@ -91,14 +97,14 @@ namespace DimensionedQuantities {
 	@endcode
 
 	If you'll be working in SI units (recommended), you might like using
-	the typedefs at the bottom, which include Meters, Seconds, Kilograms,
+	the typedefs in the SI namespace, which include Meters, Seconds, Kilograms,
 	and so on. Then, you can do the above computation:
 	@code
 	#include <PhysicalModeling/DimensionedQuantities.h>
 	namespace dq = PhysicalModeling::DimensionedQuantities; // Namespace alias, for tidier code
-	dq::Kilograms m(20.0);
-	dq::MetersPerSecondPerSecond a(9.810);
-	dq::Newtons F = m * a;
+	dq::SI::Kilograms m(20.0);
+	dq::SI::MetersPerSecondPerSecond a(9.810);
+	dq::SI::Newtons F = m * a;
 	@endcode
 
 	@remark The code itself is based on the information included in the Boost MPL
@@ -235,9 +241,10 @@ namespace DimensionedQuantities {
 	struct Quantity
 	{
 		/// @brief Constructor from value of type Precision
-		explicit Quantity(Precision x)
-		: m_value(x)
-		{}
+		explicit Quantity(Precision x) : _value(x) {}
+
+		/// @brief Empty constructor
+		Quantity() : _value() {}
 
 		/** @brief Conversion constructor, to handle results of multiplication
 			and division.
@@ -247,7 +254,7 @@ namespace DimensionedQuantities {
 			for why this conversion and assert is needed.
 		*/
 		template <class OtherDimensions>
-		Quantity(Quantity<OtherDimensions, T> const& rhs)
+		Quantity(Quantity<OtherDimensions, Precision> const& rhs)
 				: _value(rhs.value()) {
 			BOOST_STATIC_ASSERT((
 				mpl::equal<Dimensions,OtherDimensions>::type::value
@@ -294,7 +301,7 @@ namespace DimensionedQuantities {
 
 		template <class D1, class D2>
 		struct multiply_dimensions
-		: mpl::transform<D1,D2,mpl::add<_1,_2> >
+		: mpl::transform<D1,D2,mpl::plus<_1,_2> >
 		{};
 
 		template <class D1, class D2>
@@ -313,7 +320,7 @@ namespace DimensionedQuantities {
 		appropriate dimensions.
 	*/
 	template <class D1, class D2, class T>
-	Quantity<T, typename Internal::multiply_dimensions<D1,D2>::type>
+	Quantity<typename Internal::multiply_dimensions<D1,D2>::type, T>
 	operator*(Quantity<D1, T> l, Quantity<D2, T> r) {
 		return Quantity<typename Internal::multiply_dimensions<D1,D2>::type, T>(
 			l.value() * r.value());
@@ -324,25 +331,27 @@ namespace DimensionedQuantities {
 		appropriate dimensions.
 	*/
 	template <class D1, class D2, class T>
-	Quantity<T, typename Internal::divide_dimensions<D1,D2>::type>
+	Quantity<typename Internal::divide_dimensions<D1,D2>::type, T>
 	operator/(Quantity<D1, T> l, Quantity<D2, T> r) {
 		return Quantity<typename Internal::divide_dimensions<D1,D2>::type, T>(
 			l.value() / r.value());
 	}
 
 
-	/// @name Complete type names using SI units
-	/// These are for convenience only - the standard Quantity template may
-	/// always be used interchangeably with these.
-	/// @{
-	typedef Quantity<mass> Kilograms;
-	typedef Quantity<length> Meters;
-	typedef Quantity<force> Newtons;
-	typedef Quantity<speed> MetersPerSecond;
-	typedef Quantity<accel> MetersPerSecondPerSecond;
-	typedef Quantity<torque> NewtonMeters;
-	typedef Quantity<stiffness> NewtonsPerMeter;
-	/// @}
+	/** @brief Complete type names using SI units
+
+		These are for convenience only - the standard Quantity template may
+		always be used interchangeably with these.
+	*/
+	namespace SI {
+		typedef Quantity<dims::mass> Kilograms;
+		typedef Quantity<dims::length> Meters;
+		typedef Quantity<dims::force> Newtons;
+		typedef Quantity<dims::speed> MetersPerSecond;
+		typedef Quantity<dims::accel> MetersPerSecondSquared;
+		typedef Quantity<dims::torque> NewtonMeters;
+		typedef Quantity<dims::stiffness> NewtonsPerMeter;
+	} // end of SI namespace
 
 /// @}
 // end of doxygen module
@@ -353,4 +362,4 @@ namespace DimensionedQuantities {
 
 } // end of PhysicalModeling namespace
 
-#endif // __PHYSICALMODELING_DIMENSIONEDQUANTITIES_H__
+#endif // _PHYSICALMODELING_DIMENSIONEDQUANTITIES_H_

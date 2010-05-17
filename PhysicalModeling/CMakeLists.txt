@@ -3,7 +3,8 @@
 # Iowa State University HCI Graduate Program/VRAC
 
 set(HEADERS
-	DimensionedQuantities.h)
+	DimensionedQuantities.h
+	PhysicalModeling.h)
 
 if(NOT PM_IS_SUBPROJECT)
 	install(FILES ${HEADERS}

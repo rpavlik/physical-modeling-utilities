@@ -43,6 +43,15 @@ endif()
 
 add_subdirectory(PhysicalModeling)
 
+if(NOT PM_IS_SUBPROJECT)
+	include(CTest)
+	include(CreateDashboardScripts)
+
+	add_subdirectory(tests)
+
+	create_dashboard_scripts()
+endif()
+
 ###
 # Set packaging options (for CPack)
 ###
