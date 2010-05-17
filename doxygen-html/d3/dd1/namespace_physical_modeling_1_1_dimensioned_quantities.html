@@ -36,6 +36,11 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Dimension types, to use as template parameters for <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity</a>. All dimensions that are not a base, irreducible dimension are defined as products of powers of other dimensions. <br></td></tr>
 
 <p>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html">SI</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Complete type names using <a class="el" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html" title="Complete type names using SI units.">SI</a> units. <br></td></tr>
+
+<p>
 <tr><td colspan="2"><br><h2>Classes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a></td></tr>
 
@@ -44,22 +49,6 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g0578a45e14bde7ce63fd91bec1a28391">DefaultPrecision</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default precision type, for use when no precision is specified for a dimensioned quantity.  <a href="../../d7/df8/group__g_dimensioned_quantities.html#g0578a45e14bde7ce63fd91bec1a28391"></a><br></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Complete type names using SI units</div></td></tr>
-<tr><td colspan="2"><div class="groupText">These are for convenience only - the standard <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity</a> template may always be used interchangeably with these. <br><br></div></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; mass &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g1fa7b5f71461b98953b4ccd084ceb49c">Kilograms</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; length &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g032e6c9a0a26fa7d5d6b293bb7e85ffd">Meters</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; force &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#gfcdb46f5907ec76c9fc8b4a9b8e87b4c">Newtons</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; speed &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g5e5c02f75d9f4f91c073daf1b580cef2">MetersPerSecond</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; accel &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g7d582a3621f5609851f1f5b28bdf3a8d">MetersPerSecondPerSecond</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; torque &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#gee392e9cb8a26cee21c13d7cbf8bb2de">NewtonMeters</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; stiffness &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g339b13b6d8c4089265863cefb1b297a2">NewtonsPerMeter</a></td></tr>
-
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Dimensionally-aware operators</div></td></tr>
 <tr><td class="memTemplParams" nowrap colspan="2">template&lt;class D , class T &gt; </td></tr>
@@ -71,17 +60,17 @@
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Subtraction operator for quantities with dimensions.  <a href="../../d7/df8/group__g_dimensioned_quantities.html#g2a01d4f241de84573eca8c4eccc6c2ca"></a><br></td></tr>
 <tr><td class="memTemplParams" nowrap colspan="2">template&lt;class D1 , class D2 , class T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" nowrap align="right" valign="top"><a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; T, typename <br class="typebreak">
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top"><a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; typename <br class="typebreak">
 Internal::multiply_dimensions<br class="typebreak">
-&lt; D1, D2 &gt;::type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g42e1a58221e77ee909c5ee6e7b37fbc2">operator*</a> (<a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D1, T &gt; l, <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D2, T &gt; r)</td></tr>
+&lt; D1, D2 &gt;::type, T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#ga76e51da75e8fed0fe48ec922f2bbd43">operator*</a> (<a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D1, T &gt; l, <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D2, T &gt; r)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Multiplication operator that produces results with new, appropriate dimensions.  <a href="../../d7/df8/group__g_dimensioned_quantities.html#g42e1a58221e77ee909c5ee6e7b37fbc2"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Multiplication operator that produces results with new, appropriate dimensions.  <a href="../../d7/df8/group__g_dimensioned_quantities.html#ga76e51da75e8fed0fe48ec922f2bbd43"></a><br></td></tr>
 <tr><td class="memTemplParams" nowrap colspan="2">template&lt;class D1 , class D2 , class T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" nowrap align="right" valign="top"><a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; T, typename <br class="typebreak">
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top"><a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; typename <br class="typebreak">
 Internal::divide_dimensions<br class="typebreak">
-&lt; D1, D2 &gt;::type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#gb06a8e1b7469f6a986f5fd4e9c0bc723">operator/</a> (<a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D1, T &gt; l, <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D2, T &gt; r)</td></tr>
+&lt; D1, D2 &gt;::type, T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g1b33abdd98e26ecbf2f74b5cf5250898">operator/</a> (<a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D1, T &gt; l, <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D2, T &gt; r)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Division operator that produces results with new, appropriate dimensions.  <a href="../../d7/df8/group__g_dimensioned_quantities.html#gb06a8e1b7469f6a986f5fd4e9c0bc723"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Division operator that produces results with new, appropriate dimensions.  <a href="../../d7/df8/group__g_dimensioned_quantities.html#g1b33abdd98e26ecbf2f74b5cf5250898"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Namespace for all typedefs and classes required for Dimensioned Quantities support. 
@@ -91,21 +80,25 @@ Enable the use of this module in your code as follows - each variable declaratio
 
     <span class="comment">// Standard, lengthy way of creating a variable to store a length</span>
     <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">PhysicalModeling::DimensionedQuantities::Quantity&lt;PhysicalModeling::DimensionedQuantities::dims::length&gt;</a> myvar;
+    <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">PhysicalModeling::DimensionedQuantities::SI::Meters</a> mymeters;
 
     <span class="comment">// Namespace aliasing, for tidier code: recommended practice</span>
     <span class="keyword">namespace </span>dq = PhysicalModeling::DimensionedQuantities;
     dq::Quantity&lt;dq::dims::length&gt; myvar2; <span class="comment">// notice how much tidier this is</span>
+    <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gfa0373540c212cebe1a893ce5fd446dc">dq::SI::Meters</a> mymeters2;
 </pre></div><p>
 There is one additional way to access these facilities even easier, but it comes with an important warning - never use it in a header file! Use it inside a function in a .cpp, or at the top of a .cpp. <div class="fragment"><pre class="fragment">    <span class="comment">// The shortest alternative: import the things you want.</span>
     <span class="comment">// NEVER DO THIS IN A HEADER FILE!</span>
     <span class="keyword">using</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">PhysicalModeling::DimensionedQuantities::Quantity</a>;
-    <span class="keyword">using</span> PhysicalModeling::DimensionedQuantities::dims;
+    <span class="keyword">using namespace </span>PhysicalModeling::DimensionedQuantities::SI;
+    <span class="keyword">namespace </span>dims = PhysicalModeling::DimensionedQuantities::dims;
 
     Quantity&lt;dims::length&gt; myvar3; <span class="comment">// a little neater</span>
+    <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gfa0373540c212cebe1a893ce5fd446dc">Meters</a> mymeters3;
 </pre></div> 
 <p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 17 13:27:30 2010 for Physical Modeling Utilities by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 17 14:54:54 2010 for Physical Modeling Utilities by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

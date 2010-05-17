@@ -35,154 +35,159 @@
 <a name="l00025"></a>00025 <span class="comment">// - none</span>
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 <span class="comment">// Library/third-party includes</span>
-<a name="l00030"></a>00030 <span class="comment"></span><span class="preprocessor">#include &lt;boost/mpl/vector_c.hpp&gt;</span>
-<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;boost/mpl/plus.hpp&gt;</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include &lt;boost/mpl/minus.hpp&gt;</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include &lt;boost/mpl/transform.hpp&gt;</span>
-<a name="l00034"></a>00034 <span class="preprocessor">#include &lt;boost/mpl/placeholders.hpp&gt;</span>
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="comment">// Standard includes</span>
-<a name="l00038"></a>00038 <span class="comment">// - none</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;boost/static_assert.hpp&gt;</span>
+<a name="l00029"></a>00029 
+<a name="l00032"></a>00032 <span class="preprocessor">#include &lt;boost/mpl/vector_c.hpp&gt;</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include &lt;boost/mpl/plus.hpp&gt;</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include &lt;boost/mpl/minus.hpp&gt;</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include &lt;boost/mpl/equal.hpp&gt;</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;boost/mpl/transform.hpp&gt;</span>
+<a name="l00037"></a>00037 <span class="preprocessor">#include &lt;boost/mpl/placeholders.hpp&gt;</span>
 <a name="l00039"></a>00039 
-<a name="l00040"></a><a class="code" href="../../d3/d0f/namespace_physical_modeling.html">00040</a> <span class="keyword">namespace </span>PhysicalModeling {
-<a name="l00041"></a>00041 
-<a name="l00072"></a><a class="code" href="../../d3/dd1/namespace_physical_modeling_1_1_dimensioned_quantities.html">00072</a> <span class="keyword">namespace </span>DimensionedQuantities {
-<a name="l00131"></a>00131 <span class="preprocessor">#ifdef PHYSICALMODELING_DEFAULT_PRECISION</span>
-<a name="l00132"></a>00132 <span class="preprocessor"></span>    <span class="keyword">typedef</span> PHYSICALMODELING_DEFAULT_PRECISION <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g0578a45e14bde7ce63fd91bec1a28391" title="Default precision type, for use when no precision is specified for a dimensioned...">DefaultPrecision</a>;
-<a name="l00133"></a>00133 <span class="preprocessor">#else</span>
-<a name="l00134"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g0578a45e14bde7ce63fd91bec1a28391">00134</a> <span class="preprocessor"></span>    <span class="keyword">typedef</span> <span class="keywordtype">double</span> <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g0578a45e14bde7ce63fd91bec1a28391" title="Default precision type, for use when no precision is specified for a dimensioned...">DefaultPrecision</a>;
-<a name="l00135"></a>00135 <span class="preprocessor">#endif</span>
-<a name="l00136"></a>00136 <span class="preprocessor"></span>
-<a name="l00137"></a>00137     <span class="comment">// Namespace alias, since DimensionedQuantities strongly relies on boost::mpl</span>
-<a name="l00138"></a>00138     <span class="keyword">namespace </span>mpl = boost::mpl;
-<a name="l00139"></a>00139 
-<a name="l00144"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html">00144</a>     <span class="keyword">namespace </span>dims {
-<a name="l00147"></a>00147 
-<a name="l00148"></a>00148     <span class="comment">// Order of dimension elements: Time, Mass, Length, Angle</span>
-<a name="l00149"></a>00149     <span class="comment">// Value of dimension elements: exponent of that unit type</span>
-<a name="l00150"></a>00150 
-<a name="l00157"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#316105986a3e1161fb7cff2e7db93955">00157</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,0,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#316105986a3e1161fb7cff2e7db93955" title="Dimensionless scalar:.">dimensionless</a>;
-<a name="l00158"></a>00158 
-<a name="l00160"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#63f762cf6f4eea20f5fc7fb8baa9d30d">00160</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,1,0,0,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#63f762cf6f4eea20f5fc7fb8baa9d30d" title="Time (by convention, in seconds ).">time</a>;
-<a name="l00161"></a>00161 
-<a name="l00163"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#6c364f8e8ae052e13715c1bb847fd4cc">00163</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,1,0,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#6c364f8e8ae052e13715c1bb847fd4cc" title="Mass (by convention, in ).">mass</a>;
-<a name="l00164"></a>00164 
-<a name="l00166"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#c2b24e805a6163d248a239a261dd320e">00166</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,1,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#c2b24e805a6163d248a239a261dd320e" title="Length (by convention, in ).">length</a>;
-<a name="l00167"></a>00167 
-<a name="l00169"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#bf8dc4bc29d526c035fdfefe9a1e8291">00169</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,0,1,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#bf8dc4bc29d526c035fdfefe9a1e8291" title="Angle (by convention, in radians ).">angle</a>;
+<a name="l00040"></a>00040 <span class="comment">// Standard includes</span>
+<a name="l00041"></a>00041 <span class="comment">// - none</span>
+<a name="l00042"></a>00042 
+<a name="l00043"></a><a class="code" href="../../d3/d0f/namespace_physical_modeling.html">00043</a> <span class="keyword">namespace </span>PhysicalModeling {
+<a name="l00044"></a>00044 
+<a name="l00079"></a><a class="code" href="../../d3/dd1/namespace_physical_modeling_1_1_dimensioned_quantities.html">00079</a> <span class="keyword">namespace </span>DimensionedQuantities {
+<a name="l00141"></a>00141 <span class="preprocessor">#ifdef PHYSICALMODELING_DEFAULT_PRECISION</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span>    <span class="keyword">typedef</span> PHYSICALMODELING_DEFAULT_PRECISION <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g0578a45e14bde7ce63fd91bec1a28391" title="Default precision type, for use when no precision is specified for a dimensioned...">DefaultPrecision</a>;
+<a name="l00143"></a>00143 <span class="preprocessor">#else</span>
+<a name="l00144"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g0578a45e14bde7ce63fd91bec1a28391">00144</a> <span class="preprocessor"></span>    <span class="keyword">typedef</span> <span class="keywordtype">double</span> <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g0578a45e14bde7ce63fd91bec1a28391" title="Default precision type, for use when no precision is specified for a dimensioned...">DefaultPrecision</a>;
+<a name="l00145"></a>00145 <span class="preprocessor">#endif</span>
+<a name="l00146"></a>00146 <span class="preprocessor"></span>
+<a name="l00147"></a>00147     <span class="comment">// Namespace alias, since DimensionedQuantities strongly relies on boost::mpl</span>
+<a name="l00148"></a>00148     <span class="keyword">namespace </span>mpl = boost::mpl;
+<a name="l00149"></a>00149 
+<a name="l00154"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html">00154</a>     <span class="keyword">namespace </span>dims {
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158     <span class="comment">// Order of dimension elements: Time, Mass, Length, Angle</span>
+<a name="l00159"></a>00159     <span class="comment">// Value of dimension elements: exponent of that unit type</span>
+<a name="l00160"></a>00160 
+<a name="l00167"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g316105986a3e1161fb7cff2e7db93955">00167</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,0,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g316105986a3e1161fb7cff2e7db93955" title="Dimensionless scalar:.">dimensionless</a>;
+<a name="l00168"></a>00168 
+<a name="l00170"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g63f762cf6f4eea20f5fc7fb8baa9d30d">00170</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,1,0,0,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g63f762cf6f4eea20f5fc7fb8baa9d30d" title="Time (by convention, in seconds ).">time</a>;
 <a name="l00171"></a>00171 
+<a name="l00173"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g6c364f8e8ae052e13715c1bb847fd4cc">00173</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,1,0,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g6c364f8e8ae052e13715c1bb847fd4cc" title="Mass (by convention, in ).">mass</a>;
 <a name="l00174"></a>00174 
-<a name="l00176"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#479be8b5b365cc48713bfe2e92834baf">00176</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,2,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#479be8b5b365cc48713bfe2e92834baf" title="Area (by convention, in ).">area</a>;
+<a name="l00176"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gc2b24e805a6163d248a239a261dd320e">00176</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,1,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gc2b24e805a6163d248a239a261dd320e" title="Length (by convention, in ).">length</a>;
 <a name="l00177"></a>00177 
-<a name="l00179"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#14af0c562f186c6a75646432dd3de212">00179</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,3,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#14af0c562f186c6a75646432dd3de212" title="Volume (by convention, in ).">volume</a>;
-<a name="l00180"></a>00180 
-<a name="l00182"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#ccf3e2a85888b25b24244c47fc71367d">00182</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,1,-3,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#ccf3e2a85888b25b24244c47fc71367d" title="Density (by convention, in ).">density</a>;
-<a name="l00183"></a>00183 
-<a name="l00185"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#ad7417d12706391a2aa073e1d49e523d">00185</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-1,0,1,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#ad7417d12706391a2aa073e1d49e523d" title="Speed (by convention, in ).">speed</a>;
-<a name="l00186"></a>00186 
-<a name="l00188"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#131168087a8b9d58eadc6886ca4a2553">00188</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,0,1,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#131168087a8b9d58eadc6886ca4a2553" title="Acceleration (by convention, in ).">accel</a>;
-<a name="l00189"></a>00189 
-<a name="l00191"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#17fc426ba520b7b342a73e4f4af74044">00191</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-1,0,0,1,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#17fc426ba520b7b342a73e4f4af74044" title="Angular velocity (by convention, in ).">ang_vel</a>;
-<a name="l00192"></a>00192 
-<a name="l00194"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#22170bdc829a686c626af9cafee23600">00194</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,0,0,1,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#22170bdc829a686c626af9cafee23600" title="Angular acceleration (by convention, in ).">ang_accel</a>;
-<a name="l00195"></a>00195 
-<a name="l00197"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#1e07d8f26fd6eaad3d9e7b57384a1d7b">00197</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,1,1,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#1e07d8f26fd6eaad3d9e7b57384a1d7b" title="Force (by convention, in Newtons, equivalent to ).">force</a>;
-<a name="l00198"></a>00198 
-<a name="l00200"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#6f9cf0080eacbcb285912327f7542060">00200</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,0,1,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#6f9cf0080eacbcb285912327f7542060" title="Linear stiffness (by convention, in , equivalent to ).">stiffness</a>;
-<a name="l00201"></a>00201 
-<a name="l00203"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#91ce982e26608977e48170fb4745fdb6">00203</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-1,0,1,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#91ce982e26608977e48170fb4745fdb6" title="Damping coefficient (viscosity) (by convention, in , equivalent to ).">viscosity</a>;
-<a name="l00204"></a>00204 
-<a name="l00206"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#9b4c423178152be42b059b7c744ae98d">00206</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,1,2,0,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#9b4c423178152be42b059b7c744ae98d" title="Torque (by convention, in ).">torque</a>;
-<a name="l00207"></a>00207 
-<a name="l00209"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#eb3920b32a8a29d7d89fab91ede4a847">00209</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,1,2,-1,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#eb3920b32a8a29d7d89fab91ede4a847" title="Angular stiffness, (by convention, in , equivalent to ).">ang_stiffness</a>;
-<a name="l00210"></a>00210 
-<a name="l00212"></a><a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#237b8bb456403dcb1b5e6e0c2fdc9125">00212</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-1,1,2,-1,0,0,0,0&gt; <a class="code" href="../../d3/d51/namespace_physical_modeling_1_1_dimensioned_quantities_1_1dims.html#237b8bb456403dcb1b5e6e0c2fdc9125" title="Angular damping coefficient (angular viscosity) (by convention, in ).">ang_viscosity</a>;
-<a name="l00213"></a>00213 
-<a name="l00215"></a>00215 
-<a name="l00216"></a>00216     } <span class="comment">// end of namespace dims</span>
+<a name="l00179"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gbf8dc4bc29d526c035fdfefe9a1e8291">00179</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,0,1,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gbf8dc4bc29d526c035fdfefe9a1e8291" title="Angle (by convention, in radians ).">angle</a>;
+<a name="l00181"></a>00181 
+<a name="l00184"></a>00184 
+<a name="l00186"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g479be8b5b365cc48713bfe2e92834baf">00186</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,2,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g479be8b5b365cc48713bfe2e92834baf" title="Area (by convention, in ).">area</a>;
+<a name="l00187"></a>00187 
+<a name="l00189"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g14af0c562f186c6a75646432dd3de212">00189</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,0,3,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g14af0c562f186c6a75646432dd3de212" title="Volume (by convention, in ).">volume</a>;
+<a name="l00190"></a>00190 
+<a name="l00192"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gccf3e2a85888b25b24244c47fc71367d">00192</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,0,1,-3,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gccf3e2a85888b25b24244c47fc71367d" title="Density (by convention, in ).">density</a>;
+<a name="l00193"></a>00193 
+<a name="l00195"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gad7417d12706391a2aa073e1d49e523d">00195</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-1,0,1,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gad7417d12706391a2aa073e1d49e523d" title="Speed (by convention, in ).">speed</a>;
+<a name="l00196"></a>00196 
+<a name="l00198"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g131168087a8b9d58eadc6886ca4a2553">00198</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,0,1,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g131168087a8b9d58eadc6886ca4a2553" title="Acceleration (by convention, in ).">accel</a>;
+<a name="l00199"></a>00199 
+<a name="l00201"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g17fc426ba520b7b342a73e4f4af74044">00201</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-1,0,0,1,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g17fc426ba520b7b342a73e4f4af74044" title="Angular velocity (by convention, in ).">ang_vel</a>;
+<a name="l00202"></a>00202 
+<a name="l00204"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g22170bdc829a686c626af9cafee23600">00204</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,0,0,1,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g22170bdc829a686c626af9cafee23600" title="Angular acceleration (by convention, in ).">ang_accel</a>;
+<a name="l00205"></a>00205 
+<a name="l00207"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g1e07d8f26fd6eaad3d9e7b57384a1d7b">00207</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,1,1,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g1e07d8f26fd6eaad3d9e7b57384a1d7b" title="Force (by convention, in Newtons, equivalent to ).">force</a>;
+<a name="l00208"></a>00208 
+<a name="l00210"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g6f9cf0080eacbcb285912327f7542060">00210</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,0,1,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g6f9cf0080eacbcb285912327f7542060" title="Linear stiffness (by convention, in , equivalent to ).">stiffness</a>;
+<a name="l00211"></a>00211 
+<a name="l00213"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g91ce982e26608977e48170fb4745fdb6">00213</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-1,0,1,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g91ce982e26608977e48170fb4745fdb6" title="Damping coefficient (viscosity) (by convention, in , equivalent to ).">viscosity</a>;
+<a name="l00214"></a>00214 
+<a name="l00216"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9b4c423178152be42b059b7c744ae98d">00216</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,1,2,0,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9b4c423178152be42b059b7c744ae98d" title="Torque (by convention, in ).">torque</a>;
 <a name="l00217"></a>00217 
-<a name="l00218"></a>00218 
-<a name="l00234"></a>00234     <span class="keyword">template</span> &lt;<span class="keyword">class</span> Dimensions, <span class="keyword">class</span> Precision = DefaultPrecision&gt;
-<a name="l00235"></a><a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">00235</a>     <span class="keyword">struct </span><a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity</a>
-<a name="l00236"></a>00236     {
-<a name="l00238"></a><a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#50be2851e420a35987736342b7be350c">00238</a>         <span class="keyword">explicit</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#50be2851e420a35987736342b7be350c" title="Constructor from value of type Precision.">Quantity</a>(Precision x)
-<a name="l00239"></a>00239         : m_value(x)
-<a name="l00240"></a>00240         {}
-<a name="l00241"></a>00241 
-<a name="l00249"></a>00249         <span class="keyword">template</span> &lt;<span class="keyword">class</span> OtherDimensions&gt;
-<a name="l00250"></a><a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#eecd978460a6fea25f6c350362d2a5ab">00250</a>         <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#50be2851e420a35987736342b7be350c" title="Constructor from value of type Precision.">Quantity</a>(<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;OtherDimensions, T&gt;</a> <span class="keyword">const</span>&amp; rhs)
-<a name="l00251"></a>00251                 : _value(rhs.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>()) {
-<a name="l00252"></a>00252             BOOST_STATIC_ASSERT((
-<a name="l00253"></a>00253                 mpl::equal&lt;Dimensions,OtherDimensions&gt;::type::value
-<a name="l00254"></a>00254             ));
-<a name="l00255"></a>00255         }
-<a name="l00256"></a>00256 
-<a name="l00258"></a><a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c">00258</a>         Precision <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _value; }
-<a name="l00259"></a>00259     <span class="keyword">private</span>:
-<a name="l00260"></a>00260         Precision _value;
-<a name="l00261"></a>00261     };
-<a name="l00262"></a>00262 
-<a name="l00265"></a>00265 
-<a name="l00271"></a>00271     <span class="keyword">template</span>&lt;<span class="keyword">class</span> D, <span class="keyword">class</span> T&gt;
-<a name="l00272"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gca685af6e100427e270f680fb18b37f0">00272</a>     <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gca685af6e100427e270f680fb18b37f0" title="Addition operator for quantities with dimensions.">operator+</a>(<span class="keyword">const</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> &amp; l, <span class="keyword">const</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> &amp; r) {
-<a name="l00273"></a>00273         <span class="keywordflow">return</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D,T&gt;</a>(l.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>() + r.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>());
-<a name="l00274"></a>00274     }
-<a name="l00275"></a>00275 
-<a name="l00281"></a>00281     <span class="keyword">template</span>&lt;<span class="keyword">class</span> D, <span class="keyword">class</span> T&gt;
-<a name="l00282"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g2a01d4f241de84573eca8c4eccc6c2ca">00282</a>     <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g2a01d4f241de84573eca8c4eccc6c2ca" title="Subtraction operator for quantities with dimensions.">operator-</a>(<span class="keyword">const</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> &amp; l, <span class="keyword">const</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> &amp; r) {
-<a name="l00283"></a>00283         <span class="keywordflow">return</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D,T&gt;</a>(l.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>() - r.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>());
-<a name="l00284"></a>00284     }
-<a name="l00285"></a>00285 
-<a name="l00289"></a>00289 
-<a name="l00290"></a>00290     <span class="keyword">namespace </span>Internal {
-<a name="l00291"></a>00291         <span class="keyword">using namespace </span>mpl::placeholders;
-<a name="l00294"></a>00294 
-<a name="l00295"></a>00295         <span class="keyword">template</span> &lt;<span class="keyword">class</span> D1, <span class="keyword">class</span> D2&gt;
-<a name="l00296"></a>00296         <span class="keyword">struct </span>multiply_dimensions
-<a name="l00297"></a>00297         : mpl::transform&lt;D1,D2,mpl::add&lt;_1,_2&gt; &gt;
-<a name="l00298"></a>00298         {};
-<a name="l00299"></a>00299 
-<a name="l00300"></a>00300         <span class="keyword">template</span> &lt;<span class="keyword">class</span> D1, <span class="keyword">class</span> D2&gt;
-<a name="l00301"></a>00301         <span class="keyword">struct </span>divide_dimensions
-<a name="l00302"></a>00302         : mpl::transform&lt;D1,D2,mpl::minus&lt;_1,_2&gt; &gt;
-<a name="l00303"></a>00303         {};
-<a name="l00305"></a>00305     } <span class="comment">// end of Internal namespace</span>
-<a name="l00306"></a>00306 
-<a name="l00315"></a>00315     <span class="keyword">template</span> &lt;<span class="keyword">class</span> D1, <span class="keyword">class</span> D2, <span class="keyword">class</span> T&gt;
-<a name="l00316"></a>00316     Quantity&lt;T, typename Internal::multiply_dimensions&lt;D1,D2&gt;::type&gt;
-<a name="l00317"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g42e1a58221e77ee909c5ee6e7b37fbc2">00317</a>     <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g42e1a58221e77ee909c5ee6e7b37fbc2" title="Multiplication operator that produces results with new, appropriate dimensions.">operator*</a>(<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D1, T&gt;</a> l, <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D2, T&gt;</a> r) {
-<a name="l00318"></a>00318         <span class="keywordflow">return</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;typename Internal::multiply_dimensions&lt;D1,D2&gt;::type</a>, T&gt;(
-<a name="l00319"></a>00319             l.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>() * r.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>());
-<a name="l00320"></a>00320     }
-<a name="l00321"></a>00321 
-<a name="l00322"></a>00322 
+<a name="l00219"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#geb3920b32a8a29d7d89fab91ede4a847">00219</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-2,1,2,-1,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#geb3920b32a8a29d7d89fab91ede4a847" title="Angular stiffness, (by convention, in , equivalent to ).">ang_stiffness</a>;
+<a name="l00220"></a>00220 
+<a name="l00222"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g237b8bb456403dcb1b5e6e0c2fdc9125">00222</a>     <span class="keyword">typedef</span> mpl::vector_c&lt;int,-1,1,2,-1,0,0,0,0&gt; <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g237b8bb456403dcb1b5e6e0c2fdc9125" title="Angular damping coefficient (angular viscosity) (by convention, in ).">ang_viscosity</a>;
+<a name="l00223"></a>00223 
+<a name="l00225"></a>00225 
+<a name="l00226"></a>00226     } <span class="comment">// end of namespace dims</span>
+<a name="l00227"></a>00227 
+<a name="l00228"></a>00228 
+<a name="l00244"></a>00244     <span class="keyword">template</span> &lt;<span class="keyword">class</span> Dimensions, <span class="keyword">class</span> Precision = DefaultPrecision&gt;
+<a name="l00245"></a><a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">00245</a>     <span class="keyword">struct </span><a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity</a>
+<a name="l00246"></a>00246     {
+<a name="l00248"></a><a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#50be2851e420a35987736342b7be350c">00248</a>         <span class="keyword">explicit</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#50be2851e420a35987736342b7be350c" title="Constructor from value of type Precision.">Quantity</a>(Precision x) : _value(x) {}
+<a name="l00249"></a>00249 
+<a name="l00251"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g67993ce5cbc759f6eaf3840be5dce96f">00251</a>         <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g67993ce5cbc759f6eaf3840be5dce96f" title="Empty constructor.">Quantity</a>() : _value() {}
+<a name="l00252"></a>00252 
+<a name="l00260"></a>00260         <span class="keyword">template</span> &lt;<span class="keyword">class</span> OtherDimensions&gt;
+<a name="l00261"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gc8353a64c3ebc8a50f6c943f59b5fd4a">00261</a>         <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g67993ce5cbc759f6eaf3840be5dce96f" title="Empty constructor.">Quantity</a>(<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;OtherDimensions, Precision&gt;</a> <span class="keyword">const</span>&amp; rhs)
+<a name="l00262"></a>00262                 : _value(rhs.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>()) {
+<a name="l00263"></a>00263             BOOST_STATIC_ASSERT((
+<a name="l00264"></a>00264                 mpl::equal&lt;Dimensions,OtherDimensions&gt;::type::value
+<a name="l00265"></a>00265             ));
+<a name="l00266"></a>00266         }
+<a name="l00267"></a>00267 
+<a name="l00269"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c">00269</a>         Precision <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _value; }
+<a name="l00270"></a>00270     <span class="keyword">private</span>:
+<a name="l00271"></a>00271         Precision _value;
+<a name="l00272"></a>00272     };
+<a name="l00273"></a>00273 
+<a name="l00276"></a>00276 
+<a name="l00282"></a>00282     <span class="keyword">template</span>&lt;<span class="keyword">class</span> D, <span class="keyword">class</span> T&gt;
+<a name="l00283"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gca685af6e100427e270f680fb18b37f0">00283</a>     <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gca685af6e100427e270f680fb18b37f0" title="Addition operator for quantities with dimensions.">operator+</a>(<span class="keyword">const</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> &amp; l, <span class="keyword">const</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> &amp; r) {
+<a name="l00284"></a>00284         <span class="keywordflow">return</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D,T&gt;</a>(l.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>() + r.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>());
+<a name="l00285"></a>00285     }
+<a name="l00286"></a>00286 
+<a name="l00292"></a>00292     <span class="keyword">template</span>&lt;<span class="keyword">class</span> D, <span class="keyword">class</span> T&gt;
+<a name="l00293"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g2a01d4f241de84573eca8c4eccc6c2ca">00293</a>     <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g2a01d4f241de84573eca8c4eccc6c2ca" title="Subtraction operator for quantities with dimensions.">operator-</a>(<span class="keyword">const</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> &amp; l, <span class="keyword">const</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D, T&gt;</a> &amp; r) {
+<a name="l00294"></a>00294         <span class="keywordflow">return</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D,T&gt;</a>(l.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>() - r.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>());
+<a name="l00295"></a>00295     }
+<a name="l00296"></a>00296 
+<a name="l00300"></a>00300 
+<a name="l00301"></a>00301     <span class="keyword">namespace </span>Internal {
+<a name="l00302"></a>00302         <span class="keyword">using namespace </span>mpl::placeholders;
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306         <span class="keyword">template</span> &lt;<span class="keyword">class</span> D1, <span class="keyword">class</span> D2&gt;
+<a name="l00307"></a>00307         <span class="keyword">struct </span>multiply_dimensions
+<a name="l00308"></a>00308         : mpl::transform&lt;D1,D2,mpl::plus&lt;_1,_2&gt; &gt;
+<a name="l00309"></a>00309         {};
+<a name="l00310"></a>00310 
+<a name="l00311"></a>00311         <span class="keyword">template</span> &lt;<span class="keyword">class</span> D1, <span class="keyword">class</span> D2&gt;
+<a name="l00312"></a>00312         <span class="keyword">struct </span>divide_dimensions
+<a name="l00313"></a>00313         : mpl::transform&lt;D1,D2,mpl::minus&lt;_1,_2&gt; &gt;
+<a name="l00314"></a>00314         {};
+<a name="l00316"></a>00316     } <span class="comment">// end of Internal namespace</span>
+<a name="l00317"></a>00317 
 <a name="l00326"></a>00326     <span class="keyword">template</span> &lt;<span class="keyword">class</span> D1, <span class="keyword">class</span> D2, <span class="keyword">class</span> T&gt;
-<a name="l00327"></a>00327     Quantity&lt;T, typename Internal::divide_dimensions&lt;D1,D2&gt;::type&gt;
-<a name="l00328"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gb06a8e1b7469f6a986f5fd4e9c0bc723">00328</a>     <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gb06a8e1b7469f6a986f5fd4e9c0bc723" title="Division operator that produces results with new, appropriate dimensions.">operator/</a>(<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D1, T&gt;</a> l, <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D2, T&gt;</a> r) {
-<a name="l00329"></a>00329         <span class="keywordflow">return</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;typename Internal::divide_dimensions&lt;D1,D2&gt;::type</a>, T&gt;(
-<a name="l00330"></a>00330             l.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>() / r.<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html#9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>());
+<a name="l00327"></a>00327     Quantity&lt;typename Internal::multiply_dimensions&lt;D1,D2&gt;::type, T&gt;
+<a name="l00328"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#ga76e51da75e8fed0fe48ec922f2bbd43">00328</a>     <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#ga76e51da75e8fed0fe48ec922f2bbd43" title="Multiplication operator that produces results with new, appropriate dimensions.">operator*</a>(<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D1, T&gt;</a> l, <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D2, T&gt;</a> r) {
+<a name="l00329"></a>00329         <span class="keywordflow">return</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;typename Internal::multiply_dimensions&lt;D1,D2&gt;::type</a>, T&gt;(
+<a name="l00330"></a>00330             l.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>() * r.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>());
 <a name="l00331"></a>00331     }
 <a name="l00332"></a>00332 
 <a name="l00333"></a>00333 
-<a name="l00338"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g1fa7b5f71461b98953b4ccd084ceb49c">00338</a>     <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;mass&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Kilograms</a>;
-<a name="l00339"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g032e6c9a0a26fa7d5d6b293bb7e85ffd">00339</a>     <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;length&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Meters</a>;
-<a name="l00340"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gfcdb46f5907ec76c9fc8b4a9b8e87b4c">00340</a>     <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;force&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Newtons</a>;
-<a name="l00341"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g5e5c02f75d9f4f91c073daf1b580cef2">00341</a>     <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;speed&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">MetersPerSecond</a>;
-<a name="l00342"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g7d582a3621f5609851f1f5b28bdf3a8d">00342</a>     <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;accel&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">MetersPerSecondPerSecond</a>;
-<a name="l00343"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gee392e9cb8a26cee21c13d7cbf8bb2de">00343</a>     <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;torque&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">NewtonMeters</a>;
-<a name="l00344"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g339b13b6d8c4089265863cefb1b297a2">00344</a>     <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;stiffness&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">NewtonsPerMeter</a>;
-<a name="l00346"></a>00346 
-<a name="l00348"></a>00348 <span class="comment">// end of doxygen module</span>
-<a name="l00349"></a>00349 
-<a name="l00350"></a>00350 } <span class="comment">// end of DimensionedQuantities namespace</span>
-<a name="l00351"></a>00351 
-<a name="l00352"></a>00352 
-<a name="l00353"></a>00353 
-<a name="l00354"></a>00354 } <span class="comment">// end of PhysicalModeling namespace</span>
-<a name="l00355"></a>00355 
-<a name="l00356"></a>00356 <span class="preprocessor">#endif // __PHYSICALMODELING_DIMENSIONEDQUANTITIES_H__</span>
+<a name="l00337"></a>00337     <span class="keyword">template</span> &lt;<span class="keyword">class</span> D1, <span class="keyword">class</span> D2, <span class="keyword">class</span> T&gt;
+<a name="l00338"></a>00338     Quantity&lt;typename Internal::divide_dimensions&lt;D1,D2&gt;::type, T&gt;
+<a name="l00339"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g1b33abdd98e26ecbf2f74b5cf5250898">00339</a>     <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g1b33abdd98e26ecbf2f74b5cf5250898" title="Division operator that produces results with new, appropriate dimensions.">operator/</a>(<a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D1, T&gt;</a> l, <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;D2, T&gt;</a> r) {
+<a name="l00340"></a>00340         <span class="keywordflow">return</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;typename Internal::divide_dimensions&lt;D1,D2&gt;::type</a>, T&gt;(
+<a name="l00341"></a>00341             l.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>() / r.<a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g9f3b225d206fd493c69c7d0c9864ad1c" title="Retrieve the quantity&amp;#39;s value without dimensional data.">value</a>());
+<a name="l00342"></a>00342     }
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344 
+<a name="l00350"></a><a class="code" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html">00350</a>     <span class="keyword">namespace </span>SI {
+<a name="l00351"></a><a class="code" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html#aca59e1091a06ae30179e4ef5877e0f7">00351</a>         <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;dims::mass&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Kilograms</a>;
+<a name="l00352"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gfa0373540c212cebe1a893ce5fd446dc">00352</a>         <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;dims::length&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Meters</a>;
+<a name="l00353"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g4c1dd5b576c13496a3667389de2026b5">00353</a>         <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;dims::force&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Newtons</a>;
+<a name="l00354"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g048327fdf422320ece7a2d217bdef255">00354</a>         <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;dims::speed&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">MetersPerSecond</a>;
+<a name="l00355"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g56175b6dda441f1fa6027aed0d2a88f6">00355</a>         <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;dims::accel&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">MetersPerSecondSquared</a>;
+<a name="l00356"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g92909c6dc5fbcf3cc959908cd9675548">00356</a>         <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;dims::torque&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">NewtonMeters</a>;
+<a name="l00357"></a><a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gd0a7baf7f60510399f2f464e72fcfb56">00357</a>         <span class="keyword">typedef</span> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">Quantity&lt;dims::stiffness&gt;</a> <a class="code" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html" title="Template class to define a data type with appropriate dimensions.">NewtonsPerMeter</a>;
+<a name="l00358"></a>00358     } <span class="comment">// end of SI namespace</span>
+<a name="l00359"></a>00359 
+<a name="l00361"></a>00361 <span class="comment">// end of doxygen module</span>
+<a name="l00362"></a>00362 
+<a name="l00363"></a>00363 } <span class="comment">// end of DimensionedQuantities namespace</span>
+<a name="l00364"></a>00364 
+<a name="l00365"></a>00365 
+<a name="l00366"></a>00366 
+<a name="l00367"></a>00367 } <span class="comment">// end of PhysicalModeling namespace</span>
+<a name="l00368"></a>00368 
+<a name="l00369"></a>00369 <span class="preprocessor">#endif // _PHYSICALMODELING_DIMENSIONEDQUANTITIES_H_</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 17 13:27:30 2010 for Physical Modeling Utilities by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 17 14:54:52 2010 for Physical Modeling Utilities by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>
