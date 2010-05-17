@@ -107,7 +107,7 @@ namespace DimensionedQuantities {
 	#include <PhysicalModeling/DimensionedQuantities.h>
 	namespace dq = PhysicalModeling::DimensionedQuantities; // Namespace alias, for tidier code
 	dq::SI::Kilograms m(20.0);
-	dq::SI::MetersPerSecondPerSecond a(9.810);
+	dq::SI::MetersPerSecondSquared a(9.810);
 	dq::SI::Newtons F = m * a;
 	@endcode
 
