@@ -158,7 +158,7 @@ For example, here is some code using the basic Quantity&lt;&gt; template class:<
 If you'll be working in <a class="el" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html" title="Complete type names using SI units.">SI</a> units (recommended), you might like using the typedefs in the <a class="el" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html" title="Complete type names using SI units.">SI</a> namespace, which include Meters, Seconds, Kilograms, and so on. Then, you can do the above computation: <div class="fragment"><pre class="fragment"><span class="preprocessor">    #include &lt;<a class="code" href="../../d0/d8d/_dimensioned_quantities_8h.html" title="header for dimension-aware quantities">PhysicalModeling/DimensionedQuantities.h</a>&gt;</span>
     <span class="keyword">namespace </span>dq = PhysicalModeling::DimensionedQuantities; <span class="comment">// Namespace alias, for tidier code</span>
     <a class="code" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html#aca59e1091a06ae30179e4ef5877e0f7">dq::SI::Kilograms</a> m(20.0);
-    dq::SI::MetersPerSecondPerSecond a(9.810);
+    <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g56175b6dda441f1fa6027aed0d2a88f6">dq::SI::MetersPerSecondSquared</a> a(9.810);
     <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#g4c1dd5b576c13496a3667389de2026b5">dq::SI::Newtons</a> F = m * a;
 </pre></div><p>
 <dl class="remark" compact><dt><b>Remarks:</b></dt><dd>The code itself is based on the information included in the Boost MPL documentation/tutorial, but extended for physical modeling and for having a default precision. If you want to go beyond just using this header as-is, you can find information on the basic principles in use at <a href="http://www.boost.org/doc/libs/1_43_0/libs/mpl/doc/tutorial/dimensional-analysis.html">http://www.boost.org/doc/libs/1_43_0/libs/mpl/doc/tutorial/dimensional-analysis.html</a> </dd></dl>
@@ -830,7 +830,7 @@ Division operator that produces results with new, appropriate dimensions.
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 17 14:54:54 2010 for Physical Modeling Utilities by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 17 15:02:17 2010 for Physical Modeling Utilities by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>
