@@ -72,6 +72,7 @@ namespace PhysicalModeling {
 	namespace dims = PhysicalModeling::DimensionedQuantities::dims;
 
 	Quantity<dims::length> myvar3; // a little neater
+	Meters mymeters3;
 	@endcode
 */
 
@@ -83,6 +84,9 @@ namespace DimensionedQuantities {
 	C++ type, which will then enforce dimensional compatibility (can't add
 	a mass and a length) and allow for dimensional analysis-type computation
 	(mass times acceleration produces a force).
+
+	See the DimensionedQuantities namespace for ways to make the use of this
+	module more tidy.
 
 	For example, here is some code using the basic Quantity<>
 	template class:
