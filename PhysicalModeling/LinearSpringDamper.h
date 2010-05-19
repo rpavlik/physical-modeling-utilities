@@ -50,7 +50,9 @@ class LinearSpringDamper {
 				_m(mass),
 				_K(stiffness),
 				_B(viscosity),
+				_xValid(false),
 				_x(std::numeric_limits<Precision>::max()),
+				_fValid(false),
 				_f(std::numeric_limits<Precision>::max()) {}
 
 		void setDisplacement(const length_t & displacement);
@@ -70,12 +72,14 @@ class LinearSpringDamper {
 		/// @{
 
 		/// @brief displacement
+		bool _xValid;
 		length_t _x;
 
 		/// @}
 
 		/// @name Cached results of computation, to be able to return const &
 		/// @{
+		bool _fValid;
 		force_t _f;
 		/// @{
 
