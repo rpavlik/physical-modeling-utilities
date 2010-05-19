@@ -221,6 +221,9 @@ namespace DimensionedQuantities {
 	/// @brief Angular damping coefficient (angular viscosity) (by convention, in @f$ \frac{N\cdot m \cdot s}{rad} @f$)
 	typedef mpl::vector_c<int,-1,1,2,-1,0,0,0,0> ang_viscosity;
 
+	/// @brief Moment of inertia (mass times distance squared)
+	typedef mpl::vector_c<int,0,1,2,0,0,0,0,0> moment_of_inertia;
+
 	/// @}
 
 	} // end of namespace dims
