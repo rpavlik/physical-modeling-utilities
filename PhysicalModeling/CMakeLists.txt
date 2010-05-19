@@ -4,6 +4,7 @@
 
 set(HEADERS
 	DimensionedQuantities.h
+	LinearSpringDamper.h
 	PhysicalModeling.h)
 
 if(NOT PM_IS_SUBPROJECT)
