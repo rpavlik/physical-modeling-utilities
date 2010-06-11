@@ -32,13 +32,14 @@
 #include <boost/mpl/vector_c.hpp>
 #include <boost/mpl/plus.hpp>
 #include <boost/mpl/minus.hpp>
+#include <boost/mpl/divides.hpp>
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/transform.hpp>
 #include <boost/mpl/placeholders.hpp>
 /// @}
 
 // Standard includes
-// - none
+#include <cmath>
 
 namespace PhysicalModeling {
 
@@ -197,8 +198,8 @@ namespace DimensionedQuantities {
 	/// @brief Acceleration (by convention, in @f$ \frac{m}{s^2} @f$)
 	typedef mpl::vector_c<int,-2,0,1,0,0,0,0,0> accel;
 
-	/// @brief Angular velocity (by convention, in @f$ \frac{rad}{s} @f$)
-	typedef mpl::vector_c<int,-1,0,0,1,0,0,0,0> ang_vel;
+	/// @brief Angular speed/frequency (by convention, in @f$ \frac{rad}{s} @f$)
+	typedef mpl::vector_c<int,-1,0,0,1,0,0,0,0> ang_speed;
 
 	/// @brief Angular acceleration (by convention, in @f$ \frac{rad}{s^2} @f$)
 	typedef mpl::vector_c<int,-2,0,0,1,0,0,0,0> ang_accel;
@@ -221,7 +222,7 @@ namespace DimensionedQuantities {
 	/// @brief Angular damping coefficient (angular viscosity) (by convention, in @f$ \frac{N\cdot m \cdot s}{rad} @f$)
 	typedef mpl::vector_c<int,-1,1,2,-1,0,0,0,0> ang_viscosity;
 
-	/// @brief Moment of inertia (mass times distance squared)
+	/// @brief Moment of inertia (mass times distance squared) (by convention, in @f$ Kg \cdot m^2 @f$)
 	typedef mpl::vector_c<int,0,1,2,0,0,0,0,0> moment_of_inertia;
 
 	/// @}
@@ -331,6 +332,19 @@ namespace DimensionedQuantities {
 		struct divide_dimensions
 		: mpl::transform<D1,D2,mpl::minus<_1,_2> >
 		{};
+
+		/// @todo assert that the dimensions are divisible by 2?
+		template <class D>
+		struct sqrt_dimensions
+		: mpl::transform<D,mpl::int_<2>,mpl::divides<_1,_2> >
+		{};
+
+		/*
+		double _sqrt(double const& val) {
+			return std::sqrt(val);
+		}
+		*/
+
 		/// @}
 	} // end of Internal namespace
 
@@ -382,6 +396,16 @@ namespace DimensionedQuantities {
 			l.value() / r.value());
 	}
 
+	/** @brief Division operator that produces results with new,
+			appropriate dimensions.
+	*/
+	template <class D, class T>
+	Quantity<typename Internal::sqrt_dimensions<D>::type, T>
+	sqrt(Quantity<D, T> const& l) {
+		return Quantity<typename Internal::sqrt_dimensions<D>::type, T>(
+			std::sqrt(l.value()));
+	}
+
 	template<class D, class T, class stream>
 	stream & operator<<(stream & s, Quantity<D, T> const & r) {
 		s << r.value();
@@ -403,9 +427,17 @@ namespace DimensionedQuantities {
 		typedef Quantity<dims::time> Seconds;
 
 		typedef Quantity<dims::speed> MetersPerSecond;
+		typedef Quantity<dims::ang_speed> RadiansPerSecond;
 		typedef Quantity<dims::accel> MetersPerSecondSquared;
 		typedef Quantity<dims::torque> NewtonMeters;
 		typedef Quantity<dims::stiffness> NewtonsPerMeter;
+		typedef Quantity<dims::ang_stiffness> NewtonMetersPerRadian;
+
+		typedef Quantity<dims::viscosity> NewtonSecondsPerMeter;
+		typedef Quantity<dims::viscosity> KilogramsPerSecond;
+		typedef Quantity<dims::ang_viscosity> NewtonMeterSecondsPerRadian;
+
+		typedef Quantity<dims::moment_of_inertia> KilogramMetersSquared;
 	} // end of SI namespace
 
 /// @}
