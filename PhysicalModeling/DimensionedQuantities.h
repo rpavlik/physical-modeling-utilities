@@ -270,32 +270,42 @@ namespace DimensionedQuantities {
 
 		/// @brief Retrieve the quantity's value without dimensional data.
 		Precision value() const { return _value; }
+
+		/// @name Comparison operators
+		/// @{
+		bool operator<(const Quantity<Dimensions, Precision> & r) const {
+			return value() < r.value();
+		}
+
+		bool operator<=(const Quantity<Dimensions, Precision> & r) const {
+			return value() <= r.value();
+		}
+
+		bool operator>(const Quantity<Dimensions, Precision> & r) const {
+			return value() > r.value();
+		}
+
+		bool operator>=(const Quantity<Dimensions, Precision> & r) const {
+			return value() >= r.value();
+		}
+
+		bool operator==(const Quantity<Dimensions, Precision> & r) const {
+			return value() == r.value();
+		}
+		/// @}
+
+		/** @brief Accumulation operator for quantities with dimensions
+
+			Prevents accumulation of quantities with incompatible dimensions, and
+			allows accumulation of quantities with equal dimensions.
+		*/
+		Quantity<Dimensions, Precision> operator+=(const Quantity<Dimensions, Precision> & r) {
+			return Quantity<Dimensions, Precision>(_value += r._value);
+		}
+
 	private:
 		Precision _value;
 	};
-
-	/// @name Dimensionally-aware operators
-	/// @{
-
-	/** @brief Addition operator for quantities with dimensions
-
-		Prevents addition of quantities with incompatible dimensions, and
-		allows addition of quantities with equal dimensions.
-	*/
-	template<class D, class T>
-	Quantity<D, T> operator+(const Quantity<D, T> & l, const Quantity<D, T> & r) {
-		return Quantity<D,T>(l.value() + r.value());
-	}
-
-	/** @brief Subtraction operator for quantities with dimensions
-
-		Prevents subtraction of quantities with incompatible dimensions, and
-		allows subtraction of quantities with equal dimensions.
-	*/
-	template<class D, class T>
-	Quantity<D, T> operator-(const Quantity<D, T> & l, const Quantity<D, T> & r) {
-		return Quantity<D,T>(l.value() - r.value());
-	}
 
 	/** @cond innerworkings
 		@{
@@ -323,6 +333,31 @@ namespace DimensionedQuantities {
 		@endcond
 	*/
 
+	/// @name Dimensionally-aware operators
+	/// @{
+
+	/** @brief Addition operator for quantities with dimensions
+
+		Prevents addition of quantities with incompatible dimensions, and
+		allows addition of quantities with equal dimensions.
+	*/
+	template<class D, class T>
+	Quantity<D, T> operator+(const Quantity<D, T> & l, const Quantity<D, T> & r) {
+		return Quantity<D,T>(l.value() + r.value());
+	}
+
+	/** @brief Subtraction operator for quantities with dimensions
+
+		Prevents subtraction of quantities with incompatible dimensions, and
+		allows subtraction of quantities with equal dimensions.
+	*/
+	template<class D, class T>
+	Quantity<D, T> operator-(const Quantity<D, T> & l, const Quantity<D, T> & r) {
+		return Quantity<D,T>(l.value() - r.value());
+	}
+
+
+
 	/** @brief Multiplication operator that produces results with new,
 		appropriate dimensions.
 	*/
@@ -344,6 +379,7 @@ namespace DimensionedQuantities {
 			l.value() / r.value());
 	}
 
+	/// @}
 
 	/** @brief Complete type names using SI units
 
@@ -359,7 +395,10 @@ namespace DimensionedQuantities {
 		typedef Quantity<dims::torque> NewtonMeters;
 		typedef Quantity<dims::stiffness> NewtonsPerMeter;
 
-		typedef Quantity<dims::rotation> Radians;
+		typedef Quantity<dims::angle> Radians;
+
+		typedef Quantity<dims::time> Seconds;
+
 	} // end of SI namespace
 
 /// @}
