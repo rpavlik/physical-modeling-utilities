@@ -32,9 +32,9 @@ endif()
 
 find_package(Boost 1.32 REQUIRED)
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}" ${Boost_INCLUDE_DIRS})
-set(PHYSICALMODELING_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}" ${Boost_INCLUDE_DIRS} PARENT_SCOPE)
-
-if(NOT PM_IS_SUBPROJECT)
+if(PM_IS_SUBPROJECT)
+	set(PHYSICALMODELING_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}" ${Boost_INCLUDE_DIRS} PARENT_SCOPE)
+else()
 	include(DoxygenTargets)
 	add_doxygen(Doxyfile)
 endif()
@@ -54,11 +54,42 @@ if(NOT PM_IS_SUBPROJECT)
 	create_dashboard_scripts()
 endif()
 
-###
-# Set packaging options (for CPack)
-###
-
 if(NOT PM_IS_SUBPROJECT)
+
+	###
+	# Create config files to allow easy use of this library
+	###
+
+	# Set up use from build tree
+	#set(BUILD_TREE_TARGETS VPSTools osgVPS)
+
+	configure_file(physicalmodelingutils-config-build-tree.cmake.in PhysicalModelingUtilsConfig.cmake @ONLY)
+	#export(TARGETS ${BUILD_TREE_TARGETS}
+	#	NAMESPACE pmutils_buildtree_
+	#	FILE physicalmodelingutils-targets.cmake)
+	export(PACKAGE PhysicalModelingUtils)
+
+	# Set up use from install tree
+	if(WIN32)
+		set(EXPORT_DIR cmake)
+	else()
+		set(EXPORT_DIR ${LIB_DIR}/PhysicalModelingUtils)
+	endif()
+	#install(EXPORT vpstools-sdk
+	#	DESTINATION ${EXPORT_DIR}
+	#	NAMESPACE pmutils_exported_
+	#	FILE physicalmodelingutils-targets.cmake)
+	configure_file(physicalmodelingutils-config.cmake.in physicalmodelingutils-config-for-install.cmake @ONLY)
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/physicalmodelingutils-config-for-install.cmake
+		RENAME physicalmodelingutils-config.cmake
+		DESTINATION ${EXPORT_DIR})
+
+
+	###
+	# Set packaging options (for CPack)
+	###
+
+
 	set(CPACK_PACKAGE_VERSION
 		"${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
 	set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-${CPACK_PACKAGE_VERSION}-binary")
