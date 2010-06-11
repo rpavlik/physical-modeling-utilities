@@ -384,6 +384,12 @@ namespace DimensionedQuantities {
 			l.value() / r.value());
 	}
 
+	template<class D, class T, class stream>
+	stream & operator<<(stream & s, Quantity<D, T> const & r) {
+		s << r.value();
+		return s;
+	}
+
 	/// @}
 
 	/** @brief Complete type names using SI units
