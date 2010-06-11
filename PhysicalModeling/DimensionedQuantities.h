@@ -228,7 +228,6 @@ namespace DimensionedQuantities {
 
 	} // end of namespace dims
 
-
 	/** @brief Template class to define a data type with appropriate dimensions.
 
 		This is the most common element to directly use from this file:
@@ -269,28 +268,28 @@ namespace DimensionedQuantities {
 		}
 
 		/// @brief Retrieve the quantity's value without dimensional data.
-		Precision value() const { return _value; }
+		const Precision & value() const { return _value; }
 
 		/// @name Comparison operators
 		/// @{
 		bool operator<(const Quantity<Dimensions, Precision> & r) const {
-			return value() < r.value();
+			return _value < r._value;
 		}
 
 		bool operator<=(const Quantity<Dimensions, Precision> & r) const {
-			return value() <= r.value();
+			return _value <= r._value;
 		}
 
 		bool operator>(const Quantity<Dimensions, Precision> & r) const {
-			return value() > r.value();
+			return _value > r._value;
 		}
 
 		bool operator>=(const Quantity<Dimensions, Precision> & r) const {
-			return value() >= r.value();
+			return _value >= r._value;
 		}
 
 		bool operator==(const Quantity<Dimensions, Precision> & r) const {
-			return value() == r.value();
+			return _value == r._value;
 		}
 		/// @}
 
@@ -365,8 +364,6 @@ namespace DimensionedQuantities {
 		return Quantity<D,T>(l.value() - r.value());
 	}
 
-
-
 	/** @brief Multiplication operator that produces results with new,
 		appropriate dimensions.
 	*/
@@ -376,7 +373,6 @@ namespace DimensionedQuantities {
 		return Quantity<typename Internal::multiply_dimensions<D1,D2>::type, T>(
 			l.value() * r.value());
 	}
-
 
 	/** @brief Division operator that produces results with new,
 		appropriate dimensions.
