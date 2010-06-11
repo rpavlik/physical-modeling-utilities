@@ -294,13 +294,22 @@ namespace DimensionedQuantities {
 		}
 		/// @}
 
-		/** @brief Accumulation operator for quantities with dimensions
+		/** @brief Accumulation (+=) operator for quantities with dimensions
 
 			Prevents accumulation of quantities with incompatible dimensions, and
 			allows accumulation of quantities with equal dimensions.
 		*/
 		Quantity<Dimensions, Precision> operator+=(const Quantity<Dimensions, Precision> & r) {
 			return Quantity<Dimensions, Precision>(_value += r._value);
+		}
+
+		/** @brief Negative accumulation (-=) operator for quantities with dimensions
+
+			Prevents accumulation of quantities with incompatible dimensions, and
+			allows accumulation of quantities with equal dimensions.
+		*/
+		Quantity<Dimensions, Precision> operator-=(const Quantity<Dimensions, Precision> & r) {
+			return Quantity<Dimensions, Precision>(_value -= r._value);
 		}
 
 	private:
@@ -390,15 +399,13 @@ namespace DimensionedQuantities {
 		typedef Quantity<dims::mass> Kilograms;
 		typedef Quantity<dims::length> Meters;
 		typedef Quantity<dims::force> Newtons;
+		typedef Quantity<dims::angle> Radians;
+		typedef Quantity<dims::time> Seconds;
+
 		typedef Quantity<dims::speed> MetersPerSecond;
 		typedef Quantity<dims::accel> MetersPerSecondSquared;
 		typedef Quantity<dims::torque> NewtonMeters;
 		typedef Quantity<dims::stiffness> NewtonsPerMeter;
-
-		typedef Quantity<dims::angle> Radians;
-
-		typedef Quantity<dims::time> Seconds;
-
 	} // end of SI namespace
 
 /// @}
