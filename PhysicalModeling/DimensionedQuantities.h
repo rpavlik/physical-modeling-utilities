@@ -358,6 +358,8 @@ namespace DimensionedQuantities {
 		typedef Quantity<dims::accel> MetersPerSecondSquared;
 		typedef Quantity<dims::torque> NewtonMeters;
 		typedef Quantity<dims::stiffness> NewtonsPerMeter;
+
+		typedef Quantity<dims::rotation> Radians;
 	} // end of SI namespace
 
 /// @}
