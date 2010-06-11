@@ -237,8 +237,6 @@ namespace DimensionedQuantities {
 		@ref gDimensionedQuantities "dimensioned quantities" module contains
 		some examples and details.
 
-		@ingroup gDimensionedQuantities
-
 		@tparam Dimensions One of the dimension typedefs from this file.
 		@tparam Precision (Optional) The value type to store, defaults to
 		::PhysicalModeling::DimensionedQuantities::DefaultPrecision
