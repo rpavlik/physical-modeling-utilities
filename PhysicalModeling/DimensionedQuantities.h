@@ -163,7 +163,7 @@ namespace DimensionedQuantities {
 
 		Available if you have a unit-less, dimension-less coefficient:
 		don't use it to avoid declaring the dimensions of values! That would
-		defeate the purpose of using this module.
+		defeat the purpose of using this module.
 	*/
 	typedef mpl::vector_c<int,0,0,0,0,0,0,0,0> dimensionless;
 
@@ -339,6 +339,11 @@ namespace DimensionedQuantities {
 		: mpl::transform<D,mpl::int_<2>,mpl::divides<_1,_2> >
 		{};
 
+
+
+		template <class D>
+		struct sqrt_dims : mpl::divides<D, mpl::int_<2>::type > {};
+
 		/*
 		double _sqrt(double const& val) {
 			return std::sqrt(val);
@@ -400,9 +405,9 @@ namespace DimensionedQuantities {
 			appropriate dimensions.
 	*/
 	template <class D, class T>
-	Quantity<typename Internal::sqrt_dimensions<D>::type, T>
+	Quantity<typename Internal::sqrt_dims<D>::type, T>
 	sqrt(Quantity<D, T> const& l) {
-		return Quantity<typename Internal::sqrt_dimensions<D>::type, T>(
+		return Quantity<typename Internal::sqrt_dims<D>::type, T>(
 			std::sqrt(l.value()));
 	}
 

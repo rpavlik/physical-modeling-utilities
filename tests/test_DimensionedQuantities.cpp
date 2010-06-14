@@ -34,10 +34,17 @@ typedef boost::mpl::list<
 	Kilograms,
 	Meters,
 	Newtons,
+	Radians,
+	Seconds,
 	MetersPerSecond,
 	MetersPerSecondSquared,
 	NewtonMeters,
-	NewtonsPerMeter
+	NewtonsPerMeter,
+	NewtonMetersPerRadian,
+	NewtonSecondsPerMeter,
+	KilogramsPerSecond,
+	NewtonMeterSecondsPerRadian,
+	KilogramMetersSquared
 	> shortcut_SI_types;
 
 typedef boost::mpl::list<
@@ -51,7 +58,7 @@ typedef boost::mpl::list<
 	dims::density,
 	dims::speed,
 	dims::accel,
-	dims::ang_vel,
+	dims::ang_speed,
 	dims::ang_accel,
 	dims::force,
 	dims::stiffness,
@@ -89,6 +96,11 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(AddTemplatedTypes, T, all_dimensions) {
 BOOST_AUTO_TEST_CASE_TEMPLATE(SubtractTemplatedTypes, T, all_dimensions) {
 	Quantity<T> x1(0.5), x2(0.5);
 	Quantity<T> result = x1 - x2;
+}
+
+BOOST_AUTO_TEST_CASE(SimpleSqrtSanityChecks) {
+	Quantity<dims::area> area(25.0);
+	Quantity<dims::length> length = PhysicalModeling::DimensionedQuantities::sqrt(area);
 }
 
 BOOST_AUTO_TEST_CASE(SimpleConversionSanityChecks) {
