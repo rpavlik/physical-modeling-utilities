@@ -391,12 +391,22 @@ namespace DimensionedQuantities {
 	/** @brief Multiplication operator that produces results with new,
 		appropriate dimensions.
 	*/
+
 	template <class D1, class D2, class T>
 	Quantity<typename Internal::multiply_dimensions<D1,D2>::type, T>
 	operator*(Quantity<D1, T> l, Quantity<D2, T> r) {
 		return Quantity<typename Internal::multiply_dimensions<D1,D2>::type, T>(
 			l.value() * r.value());
 	}
+	/*
+
+	template <class D1, class D2, class T1, class T2>
+	Quantity<typename Internal::multiply_dimensions<D1,D2>::type, T1>
+	operator*(Quantity<D1, T1> l, Quantity<D2, T2> r) {
+		return Quantity<typename Internal::multiply_dimensions<D1,D2>::type, T1>(
+			l.value() * r.value());
+	}
+	*/
 
 	/** @brief Division operator that produces results with new,
 		appropriate dimensions.
