@@ -98,10 +98,12 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(SubtractTemplatedTypes, T, all_dimensions) {
 	Quantity<T> result = x1 - x2;
 }
 
+/*
 BOOST_AUTO_TEST_CASE(SimpleSqrtSanityChecks) {
 	Quantity<dims::area> area(25.0);
 	Quantity<dims::length> length = PhysicalModeling::DimensionedQuantities::sqrt(area);
 }
+*/
 
 BOOST_AUTO_TEST_CASE(SimpleConversionSanityChecks) {
 	Kilograms m(20);
