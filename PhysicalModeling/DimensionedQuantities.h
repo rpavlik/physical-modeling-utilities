@@ -251,6 +251,11 @@ namespace DimensionedQuantities {
 		/// @brief Empty constructor
 		Quantity() : _value() {}
 
+		template<class OtherPrecision>
+		Quantity<Dimensions, Precision> & operator=(Quantity<Dimensions, OtherPrecision> const& other) {
+			return (*this)._value = other.value;
+		}
+
 		/** @brief Conversion constructor, to handle results of multiplication
 			and division.
 
@@ -267,6 +272,8 @@ namespace DimensionedQuantities {
 		}
 
 		/// @brief Retrieve the quantity's value without dimensional data.
+		Precision & value() { return _value; }
+
 		const Precision & value() const { return _value; }
 
 		/// @name Comparison operators
@@ -425,6 +432,7 @@ namespace DimensionedQuantities {
 		always be used interchangeably with these.
 	*/
 	namespace SI {
+		typedef Quantity<dims::dimensionless> Dimensionless;
 		typedef Quantity<dims::mass> Kilograms;
 		typedef Quantity<dims::length> Meters;
 		typedef Quantity<dims::force> Newtons;
