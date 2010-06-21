@@ -71,6 +71,15 @@ Internal::divide_dimensions<br class="typebreak">
 &lt; D1, D2 &gt;::type, T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g1b33abdd98e26ecbf2f74b5cf5250898">operator/</a> (<a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D1, T &gt; l, <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D2, T &gt; r)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Division operator that produces results with new, appropriate dimensions.  <a href="../../d7/df8/group__g_dimensioned_quantities.html#g1b33abdd98e26ecbf2f74b5cf5250898"></a><br></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;class D , class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top"><a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; typename <br class="typebreak">
+Internal::sqrt_dims&lt; D &gt;::type, <br class="typebreak">
+T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#g500cd993ec840a1254514606cc06a6df">sqrt</a> (<a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D, T &gt; const &amp;l)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Division operator that produces results with new, appropriate dimensions.  <a href="../../d7/df8/group__g_dimensioned_quantities.html#g500cd993ec840a1254514606cc06a6df"></a><br></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;class D , class T , class stream &gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">stream &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/df8/group__g_dimensioned_quantities.html#ga6bea242da7a6dd635863fa81050ea46">operator&lt;&lt;</a> (stream &amp;s, <a class="el" href="../../d8/d77/struct_physical_modeling_1_1_dimensioned_quantities_1_1_quantity.html">Quantity</a>&lt; D, T &gt; const &amp;r)</td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Namespace for all typedefs and classes required for Dimensioned Quantities support. 
@@ -85,7 +94,7 @@ Enable the use of this module in your code as follows - each variable declaratio
     <span class="comment">// Namespace aliasing, for tidier code: recommended practice</span>
     <span class="keyword">namespace </span>dq = PhysicalModeling::DimensionedQuantities;
     dq::Quantity&lt;dq::dims::length&gt; myvar2; <span class="comment">// notice how much tidier this is</span>
-    <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gfa0373540c212cebe1a893ce5fd446dc">dq::SI::Meters</a> mymeters2;
+    <a class="code" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html#fa0373540c212cebe1a893ce5fd446dc">dq::SI::Meters</a> mymeters2;
 </pre></div><p>
 There is one additional way to access these facilities even easier, but it comes with an important warning - never use it in a header file! Use it inside a function in a .cpp, or at the top of a .cpp. <div class="fragment"><pre class="fragment">    <span class="comment">// The shortest alternative: import the things you want.</span>
     <span class="comment">// NEVER DO THIS IN A HEADER FILE!</span>
@@ -94,11 +103,11 @@ There is one additional way to access these facilities even easier, but it comes
     <span class="keyword">namespace </span>dims = PhysicalModeling::DimensionedQuantities::dims;
 
     Quantity&lt;dims::length&gt; myvar3; <span class="comment">// a little neater</span>
-    <a class="code" href="../../d7/df8/group__g_dimensioned_quantities.html#gfa0373540c212cebe1a893ce5fd446dc">Meters</a> mymeters3;
+    <a class="code" href="../../d6/d7d/namespace_physical_modeling_1_1_dimensioned_quantities_1_1_s_i.html#fa0373540c212cebe1a893ce5fd446dc">Meters</a> mymeters3;
 </pre></div> 
 <p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 17 15:02:17 2010 for Physical Modeling Utilities by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jun 21 10:16:41 2010 for Physical Modeling Utilities by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>
