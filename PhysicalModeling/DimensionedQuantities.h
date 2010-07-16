@@ -326,24 +326,23 @@ namespace DimensionedQuantities {
 	*/
 	/// @brief Internal workings for multiplication and division dimension operations
 	namespace Internal {
-		using namespace mpl::placeholders;
 		/// @name Metafunction classes
 		/// @{
 
 		template <class D1, class D2>
 		struct multiply_dimensions
-		: mpl::transform<D1,D2,mpl::plus<_1,_2> >
+		: mpl::transform<D1,D2,mpl::plus<mpl::placeholders::_1,mpl::placeholders::_2> >
 		{};
 
 		template <class D1, class D2>
 		struct divide_dimensions
-		: mpl::transform<D1,D2,mpl::minus<_1,_2> >
+		: mpl::transform<D1,D2,mpl::minus<mpl::placeholders::_1,mpl::placeholders::_2> >
 		{};
 
 		/// @todo assert that the dimensions are divisible by 2?
 		template <class D>
 		struct sqrt_dimensions
-		: mpl::transform<D,mpl::int_<2>,mpl::divides<_1,_2> >
+		: mpl::transform<D,mpl::int_<2>,mpl::divides<mpl::placeholders::_1,mpl::placeholders::_2> >
 		{};
 
 
