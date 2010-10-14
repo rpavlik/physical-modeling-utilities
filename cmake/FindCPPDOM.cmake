@@ -29,6 +29,11 @@
 # 2009-2010 Ryan Pavlik <rpavlik@iastate.edu> <abiryan@ryand.net>
 # http://academic.cleardefinition.com
 # Iowa State University HCI Graduate Program/VRAC
+#
+#          Copyright Iowa State University 2009-2010
+# Distributed under the Boost Software License, Version 1.0.
+#    (See accompanying file LICENSE_1_0.txt or copy at
+#          http://www.boost.org/LICENSE_1_0.txt)
 
 set(_HUMAN "cppdom")
 set(_HEADER cppdom/cppdom.h)
@@ -36,6 +41,9 @@ set(_FP_PKG_NAME cppdom)
 
 set(CPPDOM_VERSIONS
 	${CPPDOM_ADDITIONAL_VERSIONS}
+	1.1.2
+	1.1.1
+	1.1.0
 	1.0.2
 	1.0.1
 	1.0.0
@@ -121,6 +129,21 @@ find_library(CPPDOM_LIBRARY_DEBUG
 	${_VRJ_LIBDSUFFIXES}
 	DOC
 	"${_HUMAN} debug library full path")
+
+# Fallback to same library name but in the debug folder
+if(NOT CPPDOM_LIBRARY_DEBUG)
+	find_library(CPPDOM_LIBRARY_DEBUG
+		NAMES
+		${CPPDOM_LIB_NAMES}
+		HINTS
+		${CPPDOM_INCLUDE_DIR}/../
+		${${_FP_PKG_NAME}_FLAGPOLL_LIBRARY_DIRS}
+		PATH_SUFFIXES
+		${_VRJ_LIBDSUFFIXES_ONLY}
+		NO_DEFAULT_PATH
+		DOC
+		"${_HUMAN} debug library full path")
+endif()
 
 if(CPPDOM_LIBRARY_RELEASE OR CPPDOM_LIBRARY_DEBUG)
 	select_library_configurations(CPPDOM)
