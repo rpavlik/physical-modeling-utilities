@@ -147,6 +147,7 @@ namespace DimensionedQuantities {
 
 	// Namespace alias, since DimensionedQuantities strongly relies on boost::mpl
 	namespace mpl = boost::mpl;
+	#define DQ_DIMPAD 0,0,0,0,0,0,0,0,0,0,0,0
 
 	/** @brief Dimension types, to use as template parameters for Quantity.
 		All dimensions that are not a base, irreducible dimension are
@@ -165,65 +166,65 @@ namespace DimensionedQuantities {
 		don't use it to avoid declaring the dimensions of values! That would
 		defeat the purpose of using this module.
 	*/
-	typedef mpl::vector_c<int,0,0,0,0,0,0,0,0> dimensionless;
+	typedef mpl::vector_c<int,0,0,0,0,0,0,0,0, DQ_DIMPAD> dimensionless;
 
 	/// @brief Time (by convention, in seconds @f$ s @f$)
-	typedef mpl::vector_c<int,1,0,0,0,0,0,0,0> time;
+	typedef mpl::vector_c<int,1,0,0,0,0,0,0,0, DQ_DIMPAD> time;
 
 	/// @brief Mass (by convention, in @f$ kg @f$)
-	typedef mpl::vector_c<int,0,1,0,0,0,0,0,0> mass;
+	typedef mpl::vector_c<int,0,1,0,0,0,0,0,0, DQ_DIMPAD> mass;
 
 	/// @brief Length (by convention, in @f$ m @f$)
-	typedef mpl::vector_c<int,0,0,1,0,0,0,0,0> length;
+	typedef mpl::vector_c<int,0,0,1,0,0,0,0,0, DQ_DIMPAD> length;
 
 	/// @brief Angle (by convention, in radians @f$ rad @f$)
-	typedef mpl::vector_c<int,0,0,0,1,0,0,0,0> angle;
+	typedef mpl::vector_c<int,0,0,0,1,0,0,0,0, DQ_DIMPAD> angle;
 	/// @}
 
 	/// @name Compound dimensions
 	/// @{
 
 	/// @brief Area (by convention, in @f$ m^2 @f$)
-	typedef mpl::vector_c<int,0,0,2,0,0,0,0,0> area;
+	typedef mpl::vector_c<int,0,0,2,0,0,0,0,0, DQ_DIMPAD> area;
 
 	/// @brief Volume (by convention, in @f$ m^3 @f$)
-	typedef mpl::vector_c<int,0,0,3,0,0,0,0,0> volume;
+	typedef mpl::vector_c<int,0,0,3,0,0,0,0,0, DQ_DIMPAD> volume;
 
 	/// @brief Density (by convention, in @f$ \frac{kg}{m^3} @f$)
-	typedef mpl::vector_c<int,0,1,-3,0,0,0,0,0> density;
+	typedef mpl::vector_c<int,0,1,-3,0,0,0,0,0, DQ_DIMPAD> density;
 
 	/// @brief Speed (by convention, in @f$ \frac{m}{s} @f$)
-	typedef mpl::vector_c<int,-1,0,1,0,0,0,0,0> speed;
+	typedef mpl::vector_c<int,-1,0,1,0,0,0,0,0, DQ_DIMPAD> speed;
 
 	/// @brief Acceleration (by convention, in @f$ \frac{m}{s^2} @f$)
-	typedef mpl::vector_c<int,-2,0,1,0,0,0,0,0> accel;
+	typedef mpl::vector_c<int,-2,0,1,0,0,0,0,0, DQ_DIMPAD> accel;
 
 	/// @brief Angular speed/frequency (by convention, in @f$ \frac{rad}{s} @f$)
-	typedef mpl::vector_c<int,-1,0,0,1,0,0,0,0> ang_speed;
+	typedef mpl::vector_c<int,-1,0,0,1,0,0,0,0, DQ_DIMPAD> ang_speed;
 
 	/// @brief Angular acceleration (by convention, in @f$ \frac{rad}{s^2} @f$)
-	typedef mpl::vector_c<int,-2,0,0,1,0,0,0,0> ang_accel;
+	typedef mpl::vector_c<int,-2,0,0,1,0,0,0,0, DQ_DIMPAD> ang_accel;
 
 	/// @brief Force (by convention, in Newtons, equivalent to @f$ \frac{kg\cdot m}{s^2} @f$)
-	typedef mpl::vector_c<int,-2,1,1,0,0,0,0,0> force;
+	typedef mpl::vector_c<int,-2,1,1,0,0,0,0,0, DQ_DIMPAD> force;
 
 	/// @brief Linear stiffness (by convention, in @f$ \frac{N}{m} @f$, equivalent to  @f$ \frac{kg}{s^2} @f$)
-	typedef mpl::vector_c<int,-2,0,1,0,0,0,0,0> stiffness;
+	typedef mpl::vector_c<int,-2,0,1,0,0,0,0,0, DQ_DIMPAD> stiffness;
 
 	/// @brief Damping coefficient (viscosity) (by convention, in @f$ \frac{N\cdot s}{m} @f$, equivalent to @f$ \frac{kg}{s} @f$)
-	typedef mpl::vector_c<int,-1,0,1,0,0,0,0,0> viscosity;
+	typedef mpl::vector_c<int,-1,0,1,0,0,0,0,0, DQ_DIMPAD> viscosity;
 
 	/// @brief Torque (by convention, in @f$N m @f$)
-	typedef mpl::vector_c<int,-2,1,2,0,0,0,0,0> torque;
+	typedef mpl::vector_c<int,-2,1,2,0,0,0,0,0, DQ_DIMPAD> torque;
 
 	/// @brief Angular stiffness, (by convention, in @f$ \frac{N \cdot m}{rad} @f$, equivalent to @f$ \frac{kg \cdot m^2}{rad \cdot s^2} @f$)
-	typedef mpl::vector_c<int,-2,1,2,-1,0,0,0,0> ang_stiffness;
+	typedef mpl::vector_c<int,-2,1,2,-1,0,0,0,0, DQ_DIMPAD> ang_stiffness;
 
 	/// @brief Angular damping coefficient (angular viscosity) (by convention, in @f$ \frac{N\cdot m \cdot s}{rad} @f$)
-	typedef mpl::vector_c<int,-1,1,2,-1,0,0,0,0> ang_viscosity;
+	typedef mpl::vector_c<int,-1,1,2,-1,0,0,0,0, DQ_DIMPAD> ang_viscosity;
 
 	/// @brief Moment of inertia (mass times distance squared) (by convention, in @f$ Kg \cdot m^2 @f$)
-	typedef mpl::vector_c<int,0,1,2,0,0,0,0,0> moment_of_inertia;
+	typedef mpl::vector_c<int,0,1,2,0,0,0,0,0, DQ_DIMPAD> moment_of_inertia;
 
 	/// @}
 
