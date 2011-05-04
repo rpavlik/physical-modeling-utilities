@@ -73,7 +73,7 @@ if(NOT PM_IS_SUBPROJECT)
 	if(WIN32)
 		set(EXPORT_DIR cmake)
 	else()
-		set(EXPORT_DIR ${LIB_DIR}/PhysicalModelingUtils)
+		set(EXPORT_DIR lib/PhysicalModelingUtils)
 	endif()
 	#install(EXPORT vpstools-sdk
 	#	DESTINATION ${EXPORT_DIR}
