@@ -298,6 +298,10 @@ namespace DimensionedQuantities {
 		bool operator==(const Quantity<Dimensions, Precision> & r) const {
 			return _value == r._value;
 		}
+
+		bool operator!=(const Quantity<Dimensions, Precision> & r) const {
+			return _value != r._value;
+		}
 		/// @}
 
 		/** @brief Accumulation (+=) operator for quantities with dimensions
