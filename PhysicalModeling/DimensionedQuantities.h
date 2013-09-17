@@ -246,6 +246,9 @@ namespace DimensionedQuantities {
 	template <class Dimensions, class Precision = DefaultPrecision>
 	struct Quantity
 	{
+
+		typedef Quantity<Dimensions, Precision> this_type;
+
 		/// @brief Constructor from value of type Precision
 		explicit Quantity(Precision x) : _value(x) {}
 
@@ -279,27 +282,27 @@ namespace DimensionedQuantities {
 
 		/// @name Comparison operators
 		/// @{
-		bool operator<(const Quantity<Dimensions, Precision> & r) const {
+		bool operator<(const this_type & r) const {
 			return _value < r._value;
 		}
 
-		bool operator<=(const Quantity<Dimensions, Precision> & r) const {
+		bool operator<=(const this_type & r) const {
 			return _value <= r._value;
 		}
 
-		bool operator>(const Quantity<Dimensions, Precision> & r) const {
+		bool operator>(const this_type & r) const {
 			return _value > r._value;
 		}
 
-		bool operator>=(const Quantity<Dimensions, Precision> & r) const {
+		bool operator>=(const this_type & r) const {
 			return _value >= r._value;
 		}
 
-		bool operator==(const Quantity<Dimensions, Precision> & r) const {
+		bool operator==(const this_type & r) const {
 			return _value == r._value;
 		}
 
-		bool operator!=(const Quantity<Dimensions, Precision> & r) const {
+		bool operator!=(const this_type & r) const {
 			return _value != r._value;
 		}
 		/// @}
@@ -309,8 +312,8 @@ namespace DimensionedQuantities {
 			Prevents accumulation of quantities with incompatible dimensions, and
 			allows accumulation of quantities with equal dimensions.
 		*/
-		Quantity<Dimensions, Precision> operator+=(const Quantity<Dimensions, Precision> & r) {
-			return Quantity<Dimensions, Precision>(_value += r._value);
+		this_type operator+=(const this_type & r) {
+			return this_type(_value += r._value);
 		}
 
 		/** @brief Negative accumulation (-=) operator for quantities with dimensions
@@ -318,8 +321,9 @@ namespace DimensionedQuantities {
 			Prevents accumulation of quantities with incompatible dimensions, and
 			allows accumulation of quantities with equal dimensions.
 		*/
-		Quantity<Dimensions, Precision> operator-=(const Quantity<Dimensions, Precision> & r) {
-			return Quantity<Dimensions, Precision>(_value -= r._value);
+		this_type operator-=(const this_type & r) {
+			return this_type(_value -= r._value);
+		}
 		}
 
 	private:
