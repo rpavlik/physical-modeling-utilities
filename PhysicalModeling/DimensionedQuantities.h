@@ -324,6 +324,10 @@ namespace DimensionedQuantities {
 		this_type operator-=(const this_type & r) {
 			return this_type(_value -= r._value);
 		}
+
+		/// @brief construction function for some compatibility with boost::units
+		static this_type from_value(Precision const& v) {
+		    return this_type(v);
 		}
 
 	private:
